@@ -133,14 +133,18 @@
             // NewWordMenuItem
             // 
             NewWordMenuItem.Name = "NewWordMenuItem";
-            NewWordMenuItem.Size = new Size(138, 22);
+            NewWordMenuItem.Size = new Size(180, 22);
+            NewWordMenuItem.Tag = "0";
             NewWordMenuItem.Text = "新增單字(&A)";
+            NewWordMenuItem.Click += WordsMenuItem_Click;
             // 
             // SearchWordMenuItem
             // 
             SearchWordMenuItem.Name = "SearchWordMenuItem";
-            SearchWordMenuItem.Size = new Size(138, 22);
+            SearchWordMenuItem.Size = new Size(180, 22);
+            SearchWordMenuItem.Tag = "1";
             SearchWordMenuItem.Text = "搜尋單字(&S)";
+            SearchWordMenuItem.Click += WordsMenuItem_Click;
             // 
             // CheckMenuItem
             // 
@@ -152,19 +156,19 @@
             // FontMenuItem
             // 
             FontMenuItem.Name = "FontMenuItem";
-            FontMenuItem.Size = new Size(174, 22);
+            FontMenuItem.Size = new Size(180, 22);
             FontMenuItem.Text = "字型大小(&F)";
             // 
             // SwTagMenuItem
             // 
             SwTagMenuItem.Name = "SwTagMenuItem";
-            SwTagMenuItem.Size = new Size(174, 22);
+            SwTagMenuItem.Size = new Size(180, 22);
             SwTagMenuItem.Text = "只顯示標記單字(&V)";
             // 
             // ClrTagMenuItem
             // 
             ClrTagMenuItem.Name = "ClrTagMenuItem";
-            ClrTagMenuItem.Size = new Size(174, 22);
+            ClrTagMenuItem.Size = new Size(180, 22);
             ClrTagMenuItem.Text = "清除標記(&C)";
             // 
             // OFD
@@ -186,56 +190,59 @@
             // PosComboBox
             // 
             PosComboBox.FormattingEnabled = true;
-            PosComboBox.Location = new Point(646, 365);
+            PosComboBox.Location = new Point(645, 330);
             PosComboBox.Name = "PosComboBox";
-            PosComboBox.Size = new Size(121, 23);
+            PosComboBox.Size = new Size(120, 23);
             PosComboBox.TabIndex = 2;
             // 
             // WordTextBox
             // 
-            WordTextBox.Location = new Point(646, 127);
+            WordTextBox.Location = new Point(645, 110);
             WordTextBox.Name = "WordTextBox";
-            WordTextBox.Size = new Size(100, 23);
+            WordTextBox.Size = new Size(120, 23);
             WordTextBox.TabIndex = 3;
             // 
             // CnTextBox
             // 
-            CnTextBox.Location = new Point(646, 258);
+            CnTextBox.Location = new Point(645, 224);
             CnTextBox.Name = "CnTextBox";
-            CnTextBox.Size = new Size(100, 23);
+            CnTextBox.Size = new Size(120, 23);
             CnTextBox.TabIndex = 4;
             // 
             // WordLabel
             // 
             WordLabel.AutoSize = true;
-            WordLabel.Location = new Point(646, 98);
+            WordLabel.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            WordLabel.Location = new Point(645, 85);
             WordLabel.Name = "WordLabel";
-            WordLabel.Size = new Size(31, 15);
+            WordLabel.Size = new Size(41, 20);
             WordLabel.TabIndex = 5;
             WordLabel.Text = "單字";
             // 
             // CnLabel
             // 
             CnLabel.AutoSize = true;
-            CnLabel.Location = new Point(646, 208);
+            CnLabel.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            CnLabel.Location = new Point(645, 199);
             CnLabel.Name = "CnLabel";
-            CnLabel.Size = new Size(31, 15);
+            CnLabel.Size = new Size(41, 20);
             CnLabel.TabIndex = 6;
             CnLabel.Text = "中文";
             // 
             // PosLabel
             // 
             PosLabel.AutoSize = true;
-            PosLabel.Location = new Point(646, 324);
+            PosLabel.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            PosLabel.Location = new Point(645, 305);
             PosLabel.Name = "PosLabel";
-            PosLabel.Size = new Size(31, 15);
+            PosLabel.Size = new Size(41, 20);
             PosLabel.TabIndex = 7;
             PosLabel.Text = "詞性";
             // 
             // WordCheckBox
             // 
             WordCheckBox.AutoSize = true;
-            WordCheckBox.Location = new Point(610, 132);
+            WordCheckBox.Location = new Point(625, 115);
             WordCheckBox.Name = "WordCheckBox";
             WordCheckBox.Size = new Size(15, 14);
             WordCheckBox.TabIndex = 8;
@@ -244,7 +251,7 @@
             // CnCheckBox
             // 
             CnCheckBox.AutoSize = true;
-            CnCheckBox.Location = new Point(622, 245);
+            CnCheckBox.Location = new Point(625, 229);
             CnCheckBox.Name = "CnCheckBox";
             CnCheckBox.Size = new Size(15, 14);
             CnCheckBox.TabIndex = 9;
@@ -253,7 +260,7 @@
             // PosCheckBox
             // 
             PosCheckBox.AutoSize = true;
-            PosCheckBox.Location = new Point(626, 365);
+            PosCheckBox.Location = new Point(625, 335);
             PosCheckBox.Name = "PosCheckBox";
             PosCheckBox.Size = new Size(15, 14);
             PosCheckBox.TabIndex = 10;
@@ -261,7 +268,7 @@
             // 
             // S_NBtn
             // 
-            S_NBtn.Location = new Point(692, 416);
+            S_NBtn.Location = new Point(690, 420);
             S_NBtn.Name = "S_NBtn";
             S_NBtn.Size = new Size(75, 23);
             S_NBtn.TabIndex = 11;
@@ -288,6 +295,7 @@
             MainMenuStrip = Menus;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             Menus.ResumeLayout(false);
             Menus.PerformLayout();
             ResumeLayout(false);
