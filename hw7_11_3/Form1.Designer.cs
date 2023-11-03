@@ -30,7 +30,7 @@
             OpenMenuItem = new ToolStripMenuItem();
             Separator1 = new ToolStripSeparator();
             SaveMenuItem = new ToolStripMenuItem();
-            SaveNewMenuItem = new ToolStripMenuItem();
+            SaveAsMenuItem = new ToolStripMenuItem();
             Separator2 = new ToolStripSeparator();
             ExitMenuItem = new ToolStripMenuItem();
             FuncMenuItem = new ToolStripMenuItem();
@@ -44,16 +44,16 @@
             SFD = new SaveFileDialog();
             OFD = new OpenFileDialog();
             Box = new TextBox();
-            PosComboBox = new ComboBox();
+            PartComboBox = new ComboBox();
             WordTextBox = new TextBox();
             CnTextBox = new TextBox();
             WordLabel = new Label();
             CnLabel = new Label();
-            PosLabel = new Label();
+            PartLabel = new Label();
             WordCheckBox = new CheckBox();
             CnCheckBox = new CheckBox();
-            PosCheckBox = new CheckBox();
-            S_NBtn = new Button();
+            PartCheckBox = new CheckBox();
+            SN_Btn = new Button();
             Menus.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             // 
             // FilesMenuItem
             // 
-            FilesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewMenuItem, OpenMenuItem, Separator1, SaveMenuItem, SaveNewMenuItem, Separator2, ExitMenuItem });
+            FilesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewMenuItem, OpenMenuItem, Separator1, SaveMenuItem, SaveAsMenuItem, Separator2, ExitMenuItem });
             FilesMenuItem.Name = "FilesMenuItem";
             FilesMenuItem.Size = new Size(57, 20);
             FilesMenuItem.Text = "檔案(&F)";
@@ -81,6 +81,7 @@
             NewMenuItem.ShortcutKeys = Keys.Control | Keys.N;
             NewMenuItem.Size = new Size(185, 22);
             NewMenuItem.Text = "新增(&N)";
+            NewMenuItem.Click += NewMenuItem_Click;
             // 
             // OpenMenuItem
             // 
@@ -105,12 +106,14 @@
             SaveMenuItem.ShortcutKeys = Keys.Control | Keys.S;
             SaveMenuItem.Size = new Size(185, 22);
             SaveMenuItem.Text = "儲存(&S)";
+            SaveMenuItem.Click += SaveMenuItem_Click;
             // 
-            // SaveNewMenuItem
+            // SaveAsMenuItem
             // 
-            SaveNewMenuItem.Name = "SaveNewMenuItem";
-            SaveNewMenuItem.Size = new Size(185, 22);
-            SaveNewMenuItem.Text = "另存新檔(&A)";
+            SaveAsMenuItem.Name = "SaveAsMenuItem";
+            SaveAsMenuItem.Size = new Size(185, 22);
+            SaveAsMenuItem.Text = "另存新檔(&A)";
+            SaveAsMenuItem.Click += SaveMenuItem_Click;
             // 
             // Separator2
             // 
@@ -122,6 +125,7 @@
             ExitMenuItem.Name = "ExitMenuItem";
             ExitMenuItem.Size = new Size(185, 22);
             ExitMenuItem.Text = "離開(&X)";
+            ExitMenuItem.Click += ExitMenuItem_Click;
             // 
             // FuncMenuItem
             // 
@@ -133,7 +137,7 @@
             // NewWordMenuItem
             // 
             NewWordMenuItem.Name = "NewWordMenuItem";
-            NewWordMenuItem.Size = new Size(180, 22);
+            NewWordMenuItem.Size = new Size(138, 22);
             NewWordMenuItem.Tag = "0";
             NewWordMenuItem.Text = "新增單字(&A)";
             NewWordMenuItem.Click += WordsMenuItem_Click;
@@ -141,7 +145,7 @@
             // SearchWordMenuItem
             // 
             SearchWordMenuItem.Name = "SearchWordMenuItem";
-            SearchWordMenuItem.Size = new Size(180, 22);
+            SearchWordMenuItem.Size = new Size(138, 22);
             SearchWordMenuItem.Tag = "1";
             SearchWordMenuItem.Text = "搜尋單字(&S)";
             SearchWordMenuItem.Click += WordsMenuItem_Click;
@@ -156,20 +160,27 @@
             // FontMenuItem
             // 
             FontMenuItem.Name = "FontMenuItem";
-            FontMenuItem.Size = new Size(180, 22);
+            FontMenuItem.Size = new Size(174, 22);
             FontMenuItem.Text = "字型大小(&F)";
+            FontMenuItem.Click += FontMenuItem_Click;
             // 
             // SwTagMenuItem
             // 
             SwTagMenuItem.Name = "SwTagMenuItem";
-            SwTagMenuItem.Size = new Size(180, 22);
+            SwTagMenuItem.Size = new Size(174, 22);
             SwTagMenuItem.Text = "只顯示標記單字(&V)";
             // 
             // ClrTagMenuItem
             // 
             ClrTagMenuItem.Name = "ClrTagMenuItem";
-            ClrTagMenuItem.Size = new Size(180, 22);
+            ClrTagMenuItem.Size = new Size(174, 22);
             ClrTagMenuItem.Text = "清除標記(&C)";
+            // 
+            // SFD
+            // 
+            SFD.DefaultExt = "txt";
+            SFD.Filter = "ToDo files (*.todo)|*.todo|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            SFD.Title = "另存新檔";
             // 
             // OFD
             // 
@@ -178,22 +189,27 @@
             // 
             // Box
             // 
-            Box.Enabled = false;
+            Box.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Box.ForeColor = Color.Black;
+            Box.ImeMode = ImeMode.NoControl;
             Box.Location = new Point(12, 27);
             Box.Multiline = true;
             Box.Name = "Box";
+            Box.ReadOnly = true;
             Box.ScrollBars = ScrollBars.Both;
-            Box.Size = new Size(590, 422);
+            Box.Size = new Size(760, 422);
             Box.TabIndex = 1;
             Box.WordWrap = false;
             // 
-            // PosComboBox
+            // PartComboBox
             // 
-            PosComboBox.FormattingEnabled = true;
-            PosComboBox.Location = new Point(645, 330);
-            PosComboBox.Name = "PosComboBox";
-            PosComboBox.Size = new Size(120, 23);
-            PosComboBox.TabIndex = 2;
+            PartComboBox.FormattingEnabled = true;
+            PartComboBox.Items.AddRange(new object[] { "n", "v", "adj", "adv", "prep", "conj", "phr", "abbr", "pron", "other" });
+            PartComboBox.Location = new Point(645, 330);
+            PartComboBox.Name = "PartComboBox";
+            PartComboBox.Size = new Size(120, 23);
+            PartComboBox.TabIndex = 2;
+            PartComboBox.Visible = false;
             // 
             // WordTextBox
             // 
@@ -201,6 +217,7 @@
             WordTextBox.Name = "WordTextBox";
             WordTextBox.Size = new Size(120, 23);
             WordTextBox.TabIndex = 3;
+            WordTextBox.Visible = false;
             // 
             // CnTextBox
             // 
@@ -208,6 +225,7 @@
             CnTextBox.Name = "CnTextBox";
             CnTextBox.Size = new Size(120, 23);
             CnTextBox.TabIndex = 4;
+            CnTextBox.Visible = false;
             // 
             // WordLabel
             // 
@@ -218,6 +236,7 @@
             WordLabel.Size = new Size(41, 20);
             WordLabel.TabIndex = 5;
             WordLabel.Text = "單字";
+            WordLabel.Visible = false;
             // 
             // CnLabel
             // 
@@ -228,16 +247,18 @@
             CnLabel.Size = new Size(41, 20);
             CnLabel.TabIndex = 6;
             CnLabel.Text = "中文";
+            CnLabel.Visible = false;
             // 
-            // PosLabel
+            // PartLabel
             // 
-            PosLabel.AutoSize = true;
-            PosLabel.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            PosLabel.Location = new Point(645, 305);
-            PosLabel.Name = "PosLabel";
-            PosLabel.Size = new Size(41, 20);
-            PosLabel.TabIndex = 7;
-            PosLabel.Text = "詞性";
+            PartLabel.AutoSize = true;
+            PartLabel.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            PartLabel.Location = new Point(645, 305);
+            PartLabel.Name = "PartLabel";
+            PartLabel.Size = new Size(41, 20);
+            PartLabel.TabIndex = 7;
+            PartLabel.Text = "詞性";
+            PartLabel.Visible = false;
             // 
             // WordCheckBox
             // 
@@ -247,6 +268,7 @@
             WordCheckBox.Size = new Size(15, 14);
             WordCheckBox.TabIndex = 8;
             WordCheckBox.UseVisualStyleBackColor = true;
+            WordCheckBox.Visible = false;
             // 
             // CnCheckBox
             // 
@@ -256,46 +278,49 @@
             CnCheckBox.Size = new Size(15, 14);
             CnCheckBox.TabIndex = 9;
             CnCheckBox.UseVisualStyleBackColor = true;
+            CnCheckBox.Visible = false;
             // 
-            // PosCheckBox
+            // PartCheckBox
             // 
-            PosCheckBox.AutoSize = true;
-            PosCheckBox.Location = new Point(625, 335);
-            PosCheckBox.Name = "PosCheckBox";
-            PosCheckBox.Size = new Size(15, 14);
-            PosCheckBox.TabIndex = 10;
-            PosCheckBox.UseVisualStyleBackColor = true;
+            PartCheckBox.AutoSize = true;
+            PartCheckBox.Location = new Point(625, 335);
+            PartCheckBox.Name = "PartCheckBox";
+            PartCheckBox.Size = new Size(15, 14);
+            PartCheckBox.TabIndex = 10;
+            PartCheckBox.UseVisualStyleBackColor = true;
+            PartCheckBox.Visible = false;
             // 
-            // S_NBtn
+            // SN_Btn
             // 
-            S_NBtn.Location = new Point(690, 420);
-            S_NBtn.Name = "S_NBtn";
-            S_NBtn.Size = new Size(75, 23);
-            S_NBtn.TabIndex = 11;
-            S_NBtn.Text = "搜尋";
-            S_NBtn.UseVisualStyleBackColor = true;
+            SN_Btn.Location = new Point(690, 420);
+            SN_Btn.Name = "SN_Btn";
+            SN_Btn.Size = new Size(75, 23);
+            SN_Btn.TabIndex = 11;
+            SN_Btn.Text = "搜尋";
+            SN_Btn.UseVisualStyleBackColor = true;
+            SN_Btn.Visible = false;
+            SN_Btn.Click += SN_Btn_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 461);
-            Controls.Add(S_NBtn);
-            Controls.Add(PosCheckBox);
+            Controls.Add(SN_Btn);
+            Controls.Add(PartCheckBox);
             Controls.Add(CnCheckBox);
             Controls.Add(WordCheckBox);
-            Controls.Add(PosLabel);
+            Controls.Add(PartLabel);
             Controls.Add(CnLabel);
             Controls.Add(WordLabel);
             Controls.Add(CnTextBox);
             Controls.Add(WordTextBox);
-            Controls.Add(PosComboBox);
+            Controls.Add(PartComboBox);
             Controls.Add(Box);
             Controls.Add(Menus);
             MainMenuStrip = Menus;
             Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            Text = "Untitled";
             Menus.ResumeLayout(false);
             Menus.PerformLayout();
             ResumeLayout(false);
@@ -310,7 +335,7 @@
         private ToolStripMenuItem OpenMenuItem;
         private ToolStripSeparator Separator1;
         private ToolStripMenuItem SaveMenuItem;
-        private ToolStripMenuItem SaveNewMenuItem;
+        private ToolStripMenuItem SaveAsMenuItem;
         private ToolStripSeparator Separator2;
         private ToolStripMenuItem ExitMenuItem;
         private ToolStripMenuItem FuncMenuItem;
@@ -324,15 +349,15 @@
         private ToolStripMenuItem ClrTagMenuItem;
         private OpenFileDialog OFD;
         private TextBox Box;
-        private ComboBox PosComboBox;
+        private ComboBox PartComboBox;
         private TextBox WordTextBox;
         private TextBox CnTextBox;
         private Label WordLabel;
         private Label CnLabel;
-        private Label PosLabel;
+        private Label PartLabel;
         private CheckBox WordCheckBox;
         private CheckBox CnCheckBox;
-        private CheckBox PosCheckBox;
-        private Button S_NBtn;
+        private CheckBox PartCheckBox;
+        private Button SN_Btn;
     }
 }
