@@ -22,6 +22,7 @@ namespace hw7_11_3 {
         Control[] tbs = new Control[3];
         Control[] items = new Control[7];
         bool onlyMark = false;
+        bool unsaved = false;
         Form2 quizForm = new();
 
         public Form1() {
@@ -49,6 +50,7 @@ namespace hw7_11_3 {
         }
 
         private void OpenMenuItem_Click(object sender, EventArgs e) {
+            if (unsaved && MessageBox.Show("尚未儲存!!\n你確定要繼續嗎?", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel) return;
             if (OFD.ShowDialog() == DialogResult.OK) {
                 words.Clear();
                 // read file
@@ -60,6 +62,7 @@ namespace hw7_11_3 {
                 }
                 sr.Close();
                 this.Text = OFD.SafeFileName;
+                unsaved = false;
                 PrintWords();
             }
         }
@@ -115,6 +118,8 @@ namespace hw7_11_3 {
                     }
                 }
                 words.Add(new Word(WordTextBox.Text, CnTextBox.Text, PartComboBox.Text));
+                if (!unsaved) this.Text = $"*{this.Text}";
+                unsaved = true;
                 foreach (Control i in tbs) i.Text = "";
             } else if (mode == Modes.SEARCH) {
                 searched = words.ToList();
@@ -138,10 +143,13 @@ namespace hw7_11_3 {
         }
 
         private void NewMenuItem_Click(object sender, EventArgs e) {
+            if (unsaved && MessageBox.Show("尚未儲存!!\n你確定要繼續嗎?", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel) return;
+
             words.Clear();
             Box.Text = "";
             OFD.FileName = "";
             this.Text = "Untitled";
+            unsaved = false;
         }
 
         private void SaveMenuItem_Click(object sender, EventArgs e) {
@@ -149,14 +157,12 @@ namespace hw7_11_3 {
             if (item.Name == "SaveMenuItem") {
                 if (OFD.FileName == "" && SFD.ShowDialog() == DialogResult.OK) {
                     OFD.FileName = SFD.FileName;
-                    this.Text = OFD.SafeFileName;
                 } else if (OFD.FileName != "") {
                     SFD.FileName = OFD.FileName;
                 } else return;
             } else if (item.Name == "SaveAsMenuItem") {
                 if (SFD.ShowDialog() == DialogResult.OK) {
                     OFD.FileName = SFD.FileName;
-                    this.Text = OFD.SafeFileName;
                 }
             } else return;
 
@@ -166,6 +172,8 @@ namespace hw7_11_3 {
                 sw.WriteLine($"{w.attr[0]} {w.attr[1]} {w.attr[2]}");
             }
             sw.Close();
+            this.Text = OFD.SafeFileName;
+            unsaved = false;
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e) {

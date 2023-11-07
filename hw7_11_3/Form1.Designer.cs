@@ -138,7 +138,7 @@
             // NewWordMenuItem
             // 
             NewWordMenuItem.Name = "NewWordMenuItem";
-            NewWordMenuItem.Size = new Size(180, 22);
+            NewWordMenuItem.Size = new Size(138, 22);
             NewWordMenuItem.Tag = "0";
             NewWordMenuItem.Text = "新增單字(&A)";
             NewWordMenuItem.Click += WordsMenuItem_Click;
@@ -146,7 +146,7 @@
             // SearchWordMenuItem
             // 
             SearchWordMenuItem.Name = "SearchWordMenuItem";
-            SearchWordMenuItem.Size = new Size(180, 22);
+            SearchWordMenuItem.Size = new Size(138, 22);
             SearchWordMenuItem.Tag = "1";
             SearchWordMenuItem.Text = "搜尋單字(&S)";
             SearchWordMenuItem.Click += WordsMenuItem_Click;
@@ -154,7 +154,7 @@
             // QuizMenuItem
             // 
             QuizMenuItem.Name = "QuizMenuItem";
-            QuizMenuItem.Size = new Size(180, 22);
+            QuizMenuItem.Size = new Size(138, 22);
             QuizMenuItem.Text = "單字測驗(&T)";
             QuizMenuItem.Click += QuizMenuItem_Click;
             // 
@@ -189,7 +189,7 @@
             // SFD
             // 
             SFD.DefaultExt = "txt";
-            SFD.Filter = "ToDo files (*.todo)|*.todo|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            SFD.Filter = "Text files (*.txt)|*.txt|ToDo files (*.todo)|*.todo|All files (*.*)|*.*";
             SFD.Title = "另存新檔";
             // 
             // OFD
@@ -208,7 +208,8 @@
             Box.ReadOnly = true;
             Box.ScrollBars = ScrollBars.Both;
             Box.Size = new Size(760, 422);
-            Box.TabIndex = 1;
+            Box.TabIndex = 7;
+            Box.TabStop = false;
             Box.WordWrap = false;
             // 
             // PartComboBox
@@ -218,7 +219,7 @@
             PartComboBox.Location = new Point(645, 330);
             PartComboBox.Name = "PartComboBox";
             PartComboBox.Size = new Size(120, 23);
-            PartComboBox.TabIndex = 2;
+            PartComboBox.TabIndex = 5;
             PartComboBox.Visible = false;
             // 
             // WordTextBox
@@ -226,7 +227,7 @@
             WordTextBox.Location = new Point(645, 110);
             WordTextBox.Name = "WordTextBox";
             WordTextBox.Size = new Size(120, 23);
-            WordTextBox.TabIndex = 3;
+            WordTextBox.TabIndex = 1;
             WordTextBox.Visible = false;
             // 
             // CnTextBox
@@ -234,7 +235,7 @@
             CnTextBox.Location = new Point(645, 224);
             CnTextBox.Name = "CnTextBox";
             CnTextBox.Size = new Size(120, 23);
-            CnTextBox.TabIndex = 4;
+            CnTextBox.TabIndex = 3;
             CnTextBox.Visible = false;
             // 
             // WordLabel
@@ -276,7 +277,7 @@
             WordCheckBox.Location = new Point(625, 115);
             WordCheckBox.Name = "WordCheckBox";
             WordCheckBox.Size = new Size(15, 14);
-            WordCheckBox.TabIndex = 8;
+            WordCheckBox.TabIndex = 0;
             WordCheckBox.UseVisualStyleBackColor = true;
             WordCheckBox.Visible = false;
             // 
@@ -286,7 +287,7 @@
             CnCheckBox.Location = new Point(625, 229);
             CnCheckBox.Name = "CnCheckBox";
             CnCheckBox.Size = new Size(15, 14);
-            CnCheckBox.TabIndex = 9;
+            CnCheckBox.TabIndex = 2;
             CnCheckBox.UseVisualStyleBackColor = true;
             CnCheckBox.Visible = false;
             // 
@@ -296,7 +297,7 @@
             PartCheckBox.Location = new Point(625, 335);
             PartCheckBox.Name = "PartCheckBox";
             PartCheckBox.Size = new Size(15, 14);
-            PartCheckBox.TabIndex = 10;
+            PartCheckBox.TabIndex = 4;
             PartCheckBox.UseVisualStyleBackColor = true;
             PartCheckBox.Visible = false;
             // 
@@ -305,7 +306,7 @@
             SN_Btn.Location = new Point(690, 420);
             SN_Btn.Name = "SN_Btn";
             SN_Btn.Size = new Size(75, 23);
-            SN_Btn.TabIndex = 11;
+            SN_Btn.TabIndex = 6;
             SN_Btn.Text = "搜尋";
             SN_Btn.UseVisualStyleBackColor = true;
             SN_Btn.Visible = false;
