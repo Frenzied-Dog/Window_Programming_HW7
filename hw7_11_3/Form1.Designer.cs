@@ -36,10 +36,11 @@
             FuncMenuItem = new ToolStripMenuItem();
             NewWordMenuItem = new ToolStripMenuItem();
             SearchWordMenuItem = new ToolStripMenuItem();
+            QuizMenuItem = new ToolStripMenuItem();
             CheckMenuItem = new ToolStripMenuItem();
             FontMenuItem = new ToolStripMenuItem();
-            SwTagMenuItem = new ToolStripMenuItem();
-            ClrTagMenuItem = new ToolStripMenuItem();
+            SwMarkMenuItem = new ToolStripMenuItem();
+            ClrMarkMenuItem = new ToolStripMenuItem();
             FontDialog1 = new FontDialog();
             SFD = new SaveFileDialog();
             OFD = new OpenFileDialog();
@@ -129,7 +130,7 @@
             // 
             // FuncMenuItem
             // 
-            FuncMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewWordMenuItem, SearchWordMenuItem });
+            FuncMenuItem.DropDownItems.AddRange(new ToolStripItem[] { NewWordMenuItem, SearchWordMenuItem, QuizMenuItem });
             FuncMenuItem.Name = "FuncMenuItem";
             FuncMenuItem.Size = new Size(58, 20);
             FuncMenuItem.Text = "功能(&T)";
@@ -137,7 +138,7 @@
             // NewWordMenuItem
             // 
             NewWordMenuItem.Name = "NewWordMenuItem";
-            NewWordMenuItem.Size = new Size(138, 22);
+            NewWordMenuItem.Size = new Size(180, 22);
             NewWordMenuItem.Tag = "0";
             NewWordMenuItem.Text = "新增單字(&A)";
             NewWordMenuItem.Click += WordsMenuItem_Click;
@@ -145,14 +146,21 @@
             // SearchWordMenuItem
             // 
             SearchWordMenuItem.Name = "SearchWordMenuItem";
-            SearchWordMenuItem.Size = new Size(138, 22);
+            SearchWordMenuItem.Size = new Size(180, 22);
             SearchWordMenuItem.Tag = "1";
             SearchWordMenuItem.Text = "搜尋單字(&S)";
             SearchWordMenuItem.Click += WordsMenuItem_Click;
             // 
+            // QuizMenuItem
+            // 
+            QuizMenuItem.Name = "QuizMenuItem";
+            QuizMenuItem.Size = new Size(180, 22);
+            QuizMenuItem.Text = "單字測驗(&T)";
+            QuizMenuItem.Click += QuizMenuItem_Click;
+            // 
             // CheckMenuItem
             // 
-            CheckMenuItem.DropDownItems.AddRange(new ToolStripItem[] { FontMenuItem, SwTagMenuItem, ClrTagMenuItem });
+            CheckMenuItem.DropDownItems.AddRange(new ToolStripItem[] { FontMenuItem, SwMarkMenuItem, ClrMarkMenuItem });
             CheckMenuItem.Name = "CheckMenuItem";
             CheckMenuItem.Size = new Size(63, 20);
             CheckMenuItem.Text = "檢視(&W)";
@@ -164,17 +172,19 @@
             FontMenuItem.Text = "字型大小(&F)";
             FontMenuItem.Click += FontMenuItem_Click;
             // 
-            // SwTagMenuItem
+            // SwMarkMenuItem
             // 
-            SwTagMenuItem.Name = "SwTagMenuItem";
-            SwTagMenuItem.Size = new Size(174, 22);
-            SwTagMenuItem.Text = "只顯示標記單字(&V)";
+            SwMarkMenuItem.Name = "SwMarkMenuItem";
+            SwMarkMenuItem.Size = new Size(174, 22);
+            SwMarkMenuItem.Text = "只顯示標記單字(&V)";
+            SwMarkMenuItem.Click += SwMarkMenuItem_Click;
             // 
-            // ClrTagMenuItem
+            // ClrMarkMenuItem
             // 
-            ClrTagMenuItem.Name = "ClrTagMenuItem";
-            ClrTagMenuItem.Size = new Size(174, 22);
-            ClrTagMenuItem.Text = "清除標記(&C)";
+            ClrMarkMenuItem.Name = "ClrMarkMenuItem";
+            ClrMarkMenuItem.Size = new Size(174, 22);
+            ClrMarkMenuItem.Text = "清除標記(&C)";
+            ClrMarkMenuItem.Click += ClrMarkMenuItem_Click;
             // 
             // SFD
             // 
@@ -345,8 +355,8 @@
         private FontDialog FontDialog1;
         private SaveFileDialog SFD;
         private ToolStripMenuItem FontMenuItem;
-        private ToolStripMenuItem SwTagMenuItem;
-        private ToolStripMenuItem ClrTagMenuItem;
+        private ToolStripMenuItem SwMarkMenuItem;
+        private ToolStripMenuItem ClrMarkMenuItem;
         private OpenFileDialog OFD;
         private TextBox Box;
         private ComboBox PartComboBox;
@@ -359,5 +369,6 @@
         private CheckBox CnCheckBox;
         private CheckBox PartCheckBox;
         private Button SN_Btn;
+        private ToolStripMenuItem QuizMenuItem;
     }
 }
