@@ -194,7 +194,7 @@
             // 
             // OFD
             // 
-            OFD.Filter = "ToDo files (*.todo)|*.todo|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            OFD.Filter = "Text files (*.txt)|*.txt|ToDo files (*.todo)|*.todo|All files (*.*)|*.*";
             OFD.Title = "開啟文件";
             // 
             // Box

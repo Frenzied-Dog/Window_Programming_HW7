@@ -49,24 +49,6 @@ namespace hw7_11_3 {
             }
         }
 
-        private void OpenMenuItem_Click(object sender, EventArgs e) {
-            if (unsaved && MessageBox.Show("尚未儲存!!\n你確定要繼續嗎?", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel) return;
-            if (OFD.ShowDialog() == DialogResult.OK) {
-                words.Clear();
-                // read file
-                StreamReader sr = new StreamReader(OFD.FileName);
-                // readLine until end of file
-                while (!sr.EndOfStream) {
-                    string[] s = sr.ReadLine().Split(' ');
-                    words.Add(new Word(s[0], s[1], s[2]));
-                }
-                sr.Close();
-                this.Text = OFD.SafeFileName;
-                unsaved = false;
-                PrintWords();
-            }
-        }
-
         private void WordsMenuItem_Click(object sender, EventArgs e) {
             if ((int)mode > 2) return;
             var item = (ToolStripMenuItem)sender;
@@ -152,7 +134,28 @@ namespace hw7_11_3 {
             unsaved = false;
         }
 
+        private void OpenMenuItem_Click(object sender, EventArgs e) {
+            if (unsaved && MessageBox.Show("尚未儲存!!\n你確定要繼續嗎?", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel) return;
+
+            if (OFD.ShowDialog() == DialogResult.OK) {
+                words.Clear();
+                // read file
+                StreamReader sr = new StreamReader(OFD.FileName);
+                // readLine until end of file
+                while (!sr.EndOfStream) {
+                    string[] s = sr.ReadLine().Split(' ');
+                    words.Add(new Word(s[0], s[1], s[2]));
+                }
+                sr.Close();
+                this.Text = OFD.SafeFileName;
+                unsaved = false;
+                PrintWords();
+            }
+        }
+
         private void SaveMenuItem_Click(object sender, EventArgs e) {
+            if (onlyMark && MessageBox.Show("目前只會保存被標記的單字喔!\n你確定要繼續嗎?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.Cancel) return;
+
             var item = (ToolStripMenuItem)sender;
             if (item.Name == "SaveMenuItem") {
                 if (OFD.FileName == "" && SFD.ShowDialog() == DialogResult.OK) {
