@@ -124,6 +124,7 @@
             // ExitMenuItem
             // 
             ExitMenuItem.Name = "ExitMenuItem";
+            ExitMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
             ExitMenuItem.Size = new Size(185, 22);
             ExitMenuItem.Text = "離開(&X)";
             ExitMenuItem.Click += ExitMenuItem_Click;
@@ -138,7 +139,7 @@
             // NewWordMenuItem
             // 
             NewWordMenuItem.Name = "NewWordMenuItem";
-            NewWordMenuItem.Size = new Size(138, 22);
+            NewWordMenuItem.Size = new Size(180, 22);
             NewWordMenuItem.Tag = "0";
             NewWordMenuItem.Text = "新增單字(&A)";
             NewWordMenuItem.Click += WordsMenuItem_Click;
@@ -146,7 +147,7 @@
             // SearchWordMenuItem
             // 
             SearchWordMenuItem.Name = "SearchWordMenuItem";
-            SearchWordMenuItem.Size = new Size(138, 22);
+            SearchWordMenuItem.Size = new Size(180, 22);
             SearchWordMenuItem.Tag = "1";
             SearchWordMenuItem.Text = "搜尋單字(&S)";
             SearchWordMenuItem.Click += WordsMenuItem_Click;
@@ -154,7 +155,7 @@
             // QuizMenuItem
             // 
             QuizMenuItem.Name = "QuizMenuItem";
-            QuizMenuItem.Size = new Size(138, 22);
+            QuizMenuItem.Size = new Size(180, 22);
             QuizMenuItem.Text = "單字測驗(&T)";
             QuizMenuItem.Click += QuizMenuItem_Click;
             // 
@@ -168,21 +169,21 @@
             // FontMenuItem
             // 
             FontMenuItem.Name = "FontMenuItem";
-            FontMenuItem.Size = new Size(174, 22);
+            FontMenuItem.Size = new Size(180, 22);
             FontMenuItem.Text = "字型大小(&F)";
             FontMenuItem.Click += FontMenuItem_Click;
             // 
             // SwMarkMenuItem
             // 
             SwMarkMenuItem.Name = "SwMarkMenuItem";
-            SwMarkMenuItem.Size = new Size(174, 22);
+            SwMarkMenuItem.Size = new Size(180, 22);
             SwMarkMenuItem.Text = "只顯示標記單字(&V)";
             SwMarkMenuItem.Click += SwMarkMenuItem_Click;
             // 
             // ClrMarkMenuItem
             // 
             ClrMarkMenuItem.Name = "ClrMarkMenuItem";
-            ClrMarkMenuItem.Size = new Size(174, 22);
+            ClrMarkMenuItem.Size = new Size(180, 22);
             ClrMarkMenuItem.Text = "清除標記(&C)";
             ClrMarkMenuItem.Click += ClrMarkMenuItem_Click;
             // 
