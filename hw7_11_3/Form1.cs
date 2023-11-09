@@ -172,6 +172,7 @@ namespace hw7_11_3 {
             // write file
             StreamWriter sw = new(SFD.FileName);
             foreach (Word w in words) {
+                if (onlyMark && !w.mark) continue;
                 sw.WriteLine($"{w.attr[0]} {w.attr[1]} {w.attr[2]}");
             }
             sw.Close();
